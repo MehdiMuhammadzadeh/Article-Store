@@ -1,0 +1,19 @@
+.footer {
+  background-color: #08355E;
+}
+
+
+
+@media (max-width: 768px) {
+  footer {
+    /* display: flex; */
+    flex-direction: column;
+  }
+
+  /* footer > div {
+   
+  } */
+.subscribe h1 {
+  font-size: 1.5rem;
+}
+}

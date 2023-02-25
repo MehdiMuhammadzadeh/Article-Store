@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import ArtcielProvider from './context/ArtcielProvider';
+import Article from './Pages/Article';
+import Cart from './Pages/Cart';
+import Home from './Pages/Home';
 
-function App() {
+
+const App = () => {
+
+  const [count, setCounter] = useState(0) 
+
+  const passData = () => {
+    setCounter(count + 1)
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Header count={count} />
+      <Routes>
+        <Route path='/' element={<Home />}/>
+        <Route path='/cart' element={<Cart />}/>
+        <Route path='/article' element={
+          <ArtcielProvider>
+            <Article  passData={passData}/>
+          </ArtcielProvider>
+        } />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
+
+
+
+        {/* <Route path='/article' element={<Article
+          passData={passData}
+        />}/> */}
